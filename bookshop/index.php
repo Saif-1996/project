@@ -396,7 +396,7 @@
                                         </h2>
                                         <div class="product-btns">
 
-                                            <button class="addtocart primary-btn add-to-cart"><i
+                                            <button value="<?php echo $row["pro_id"]?>" class="addtocart primary-btn add-to-cart"><i
                                                         class="fa fa-shopping-cart"></i>
                                                 Add to
                                                 Cart

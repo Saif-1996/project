@@ -1,4 +1,5 @@
 <?php session_start();
+ob_start();
 include("admin/includes/connection.php");
 if (isset($_POST['id'])) {
     if (isset($_POST["remove"])) {
