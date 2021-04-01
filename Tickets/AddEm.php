@@ -1,16 +1,50 @@
-<?php   include ('includes/Database.php') ;?>
-<?php   include ('includes/header.php') ;?>
 
+<?php   include ('includes/header.php') ;?>
+ 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
+// Delete
+
+function delete_data(d) {
+        var id = d;
+        $.post("app/Employee.php",
+            {
+                id: id,
+                delete: "delete",
+
+            },
+            function (data) {
+                $("tbody").html(data);
+
+            });
+    }
+
 	$(document).ready(function(){
 
 
-		$(".add").click(function(){
-            $(":input").each(function() {
-   if($(this).val() === "")
-    alert("!!يرجى ادخال كامل المعلومات");
-    else{
+
+
+
+
+
+
+// ******************
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Add Employee   ***************
+
+		$(".add").click(function(){ 
         var name = $("#name").val();
                 var id = $("#id").val();
                 var type = $("#type").val();
@@ -18,7 +52,7 @@
                 var form = new FormData();
                
                 form.append("name", name);
-                form.append("pass", pass);
+                form.append("pass", password);
                 form.append("id", id);
                 form.append("type", type);
                 form.append("Add", "add");
@@ -30,16 +64,42 @@
                     contentType: false,
                     processData: false,
                     success: function (value) {
+                        // alert(value);
                         $("tbody").html(value);
                         $('#form')[0].reset();
                     }
                 });
-    }
-});
-			
 
-			
 		});
+
+
+		$("#edit").click(function(){
+   var name = $("#edname").val();
+                var id = $("#edid").val();
+                var type = $("#edtype").val();
+                var password = $("#edpass").val();
+                var form = new FormData();
+               
+                form.append("name", name);
+                form.append("pass", password);
+                form.append("id", id);
+                form.append("type", type);
+                form.append("Add", "add");
+                // alert(form["file"]);
+                $.ajax({
+                    type: "post",
+                    url: "app/Employee.php",
+                    data: form/*action :"add"*/,
+                    contentType: false,
+                    processData: false,
+                    success: function (value) {
+                        // alert(value);
+                        $("tbody").html(value);
+                        $('#form')[0].reset();
+                    }
+                });
+	});
+
 
 // Delet-----------------------------------------
 $("#form").submit(function(e) {
@@ -129,8 +189,33 @@ $("#form").submit(function(e) {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        
-                                      
+        <?php     
+    
+    $admin=new admin(); 
+    if($admin->GetAllUser()!=0){
+$data=$admin->GetAllUser();
+$ty="";
+
+foreach ($data as $row ) {
+    if($row["per"]==0){
+        $ty="بدون صلاحية";
+    }else{
+        $ty="كامل صلاحية";
+
+    
+    }
+ echo '<tr>
+<td>'.$row["name"].'</td>
+<td>'.$row["userid"].'</td>
+<td class="text-right">'.$ty.'</td>
+<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#scrollmodal2">تعديل</button></td>
+ <td><button type="button" onclick="delete_data(' . $row['id'] . ')" class="btn btn-danger" >حذف</button></td>
+</tr>';
+    }
+
+}
+  
+                                    ?>  
                                     </tbody>
                                 </table>
                             </div>

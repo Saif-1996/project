@@ -1,3 +1,4 @@
+<?php   include ('class/admin.php') ;?>
 <!DOCTYPE html>
 <html lang="en">
 

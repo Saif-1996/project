@@ -40,9 +40,12 @@ class user extends Db
         $this->user_id = $u;
         $this->per = $pe;
         $query = "insert into user(name,password,userid,per)
-       values ('$n','$p',$u,$p)";
-
+       values ('$n','$p',$u,$pe )";
+// return 0;
         $this->conn()->query($query);
+        // return ("query is".$this->conn()->err);
+        // else
+        // return("Done!!@");
     }
 
     // Select a row/s in a Database Table
@@ -62,7 +65,7 @@ class user extends Db
             while ($row = $result->fetch_assoc()) {
                 $data[] = $row;
             }
-            return $data;
+           return $data;
         } else {
             return 0;
         }
