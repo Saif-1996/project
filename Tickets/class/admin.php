@@ -11,7 +11,7 @@ class admin extends user
         $this->pass = $p;
         $this->user_id = $u;
         $this->per = $pe;
-        $query = "insert into user(name,password,userid,per)
+        $query = "insert into user(emp_name,password,user_id,per)
        values ('$n','$p',$u,$pe )";
 // return 0;
         $this->conn()->query($query);
@@ -55,7 +55,7 @@ class admin extends user
         
 
     public function GetOneCase($id){
-        $query = "select * from cases where id=$id";
+        $query = "select * from cases where case_id=$id";
     
         $result = $this->conn()->query($query);
         
@@ -72,9 +72,9 @@ class admin extends user
 
     // Update a row/s in a Database Table
     public function UpdateUser($id,$n, $p, $u, $pe){
-        $query = "update  user set name ='$n',
+        $query = "update  user set emp_name ='$n',
         password='$p',
-        userid='$u',
+        user_id='$u',
         per='$pe'
         where id = $id";
         $this->conn()->query($query);

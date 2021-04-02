@@ -233,8 +233,8 @@ foreach ($data as $row ) {
     
     }
  echo '<tr>
-<td class="text-right">'.$row["name"].'</td>
-<td class="text-right">'.$row["userid"].'</td>
+<td class="text-right">'.$row["emp_name"].'</td>
+<td class="text-right">'.$row["user_id"].'</td>
 <td class="text-right">'.$ty.'</td>
 <td class="text-right"><button type="button"  onclick="show(' . $row['id'] . ')" class="btn btn-primary" data-toggle="modal" data-target="#scrollmodal2">تعديل</button></td>
  <td class="text-right"><button type="button" onclick="delete_data(' . $row['id'] . ')" class="btn btn-danger" >حذف</button></td>

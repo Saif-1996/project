@@ -15,14 +15,14 @@ echo'           <div class="row">
 <div class="col-6">
     <div class="form-group">
     <label for="cc-payment" class="control-label mb-1">الأسم</label>
-    <input id="edname" name="edname" value="'.$data["name"].'" type="text" class="form-control cc-name valid" data-val="true" data-val-required="Please enter the name on card" autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error">
+    <input id="edname" name="edname" value="'.$data["emp_name"].'" type="text" class="form-control cc-name valid" data-val="true" data-val-required="Please enter the name on card" autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error">
 </div>
 
 </div>
 <div class="col-6">
 <div class="form-group has-success">
     <label for="cc-name" class="control-label mb-1"> الرقم الوطني / الشخصي</label>
-    <input id="edid" name="id" value="'.$data["userid"].'" type="text" maxlength="10" class="form-control cc-name valid" data-val="true" data-val-required="يرجى ادخال الرقم الوطني" autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error">
+    <input id="edid" name="id" value="'.$data["user_id"].'" type="text" maxlength="10" class="form-control cc-name valid" data-val="true" data-val-required="يرجى ادخال الرقم الوطني" autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error">
     <span class="help-block field-validation-valid"   data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
 </div>
 
@@ -103,8 +103,8 @@ else{
                 $ty="كامل صلاحية";
             }
             echo '<tr>
-<td class="text-right">'.$row["name"].'</td>
-<td class="text-right">'.$row["userid"].'</td>
+<td class="text-right">'.$row["emp_name"].'</td>
+<td class="text-right">'.$row["user_id"].'</td>
 <td class="text-right">'.$ty.'</td>
 <td class="text-right"><button type="button" onclick="show(' . $row['id'] . ')"  class="btn btn-primary" data-toggle="modal" data-target="#scrollmodal2">تعديل</button></td>
 <td class="text-right"><button type="button" onclick="delete_data(' . $row['id'] . ')" class="btn btn-danger" >حذف</button></td>

@@ -7,7 +7,7 @@ $type=$_POST["type"];
 $note=$_POST["note"];
 $national_id=$_POST["national_id"];
 $birth=$_POST["day"]."/".$_POST["mounth"]."/".$_POST["year"];
-$user_id=$_SESSION["id"];
+$user_id=$_SESSION["Emp_id"];
 $case=new user();
 $case->AddCase($user_id,$name,$national_id,$birth,$phone,$note,$type);
 

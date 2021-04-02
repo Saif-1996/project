@@ -15,7 +15,7 @@ class user extends Db
     public function login($pass,$id)
     {
 
-        $query = "select id from user where password='" . $pass . "' and userid='" . $id . "'";
+        $query = "select id from user where password='" . $pass . "' and user_id='" . $id . "'";
 
 
         $result = $this->conn()->query($query);
@@ -48,8 +48,8 @@ $case->Insert();
     public function GetAll()
     {
 
+        $query = "select * from cases INNER JOIN user ON cases.user_id=user.id";
 
-        $query = "select * from cases";
     
         $result = $this->conn()->query($query);
         if ($result->num_rows > 0) {

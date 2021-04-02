@@ -28,7 +28,7 @@ class Cases extends Db{
     {
 
 
-        $query = "select * from cases";
+        $query = "select * from cases INNER JOIN user ON cases.user_id=user.id";
     
         $result = $this->conn()->query($query);
         if ($result->num_rows > 0) {
