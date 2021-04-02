@@ -56,7 +56,8 @@ $(document).ready(function () {
 
             },
             function (data) {
-                if (data == "true") {
+                
+                if (data == true) {
                     window.location.href = "index.php";
                 }
                 else {

@@ -1,10 +1,20 @@
-<?php    session_start();
-if(!isset($_SESSION['id'])){
-    header("location:login.php");
+<?php    
+session_start();
 
-
+if(!isset($_SESSION['Emp_id'])){
+    header("location:Login.php");
+    die();
 } 
-  include ('class/admin.php') ;?>
+  include_once ('class/admin.php') ;
+  
+  $admin=new admin();
+  $data=$admin->GetOne($_SESSION["Emp_id"]);
+  
+  
+  ?>
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -65,21 +75,22 @@ if(!isset($_SESSION['id'])){
             <nav class="navbar-mobile">
                 <div class="container-fluid">
                     <ul class="navbar-mobile__list list-unstyled">
-                        <li>
+                     <?php if($data["per"]=="1"){echo ' <li>
                             <a href="index.php">
                                 <i class=""></i>جدول الحالات</a>
-                        </li>
+                        </li>';} ?>  
                         <li>
                             <a href="AddTicket.php">
                                 <i class=""></i>إضافة حالة</a>
                         </li>
-                        <li>
+                        <?php if($data["per"]=="1"){echo '<li>
                             <a href="AddEm.php">
                                 <i class=""></i>إضافةموظف</a>
-                        </li>
+                        </li> ';} ?>
+                        
                         <li>
-                            <a href="calendar.html">
-                                <i class=""></i>تسجيل الحروج</a>
+                            <a  href="app/logout.php">
+                                <i class=""></i>تسجيل خروج</a>
                         </li>
                        
                       
@@ -99,20 +110,26 @@ if(!isset($_SESSION['id'])){
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class=" navbar__list ">
-                        <li class="">
+                    <?php if($data["per"]=="1"){
+                        echo ' <li class="">
                             <a href="index.php">
                                 <i class=""></i>جدول الحالات</a>
-                        </li>
+                        </li>';
+                    } ?>  
+                   
                         <li class="active">
                             <a href="AddTicket.php">
                                 <i class=""></i>اضافة حالة</a>
                         </li>
-                        <li>
+                        <?php if($data["per"]=="1"){
+                        echo '<li>
                             <a href="AddEm.php">
                                 <i class=""></i>اضافة موظف</a>
-                        </li>
+                        </li> ';
+                    } ?>  
+                        
                         <li>
-                            <a href="LogIn.php">
+                            <a href="app/logout.php">
                                 <i class=""></i>تسجيل خروج</a>
                         </li>
                     </ul>
