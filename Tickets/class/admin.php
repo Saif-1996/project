@@ -37,9 +37,25 @@ class admin extends user
             return 0;
         }
     }
+    
 
     public function GetOne($id){
         $query = "select * from user where id=$id";
+    
+        $result = $this->conn()->query($query);
+        
+
+         $data= $result->fetch_assoc();
+               
+            
+           return $data;
+       
+    }
+
+        
+
+    public function GetOneCase($id){
+        $query = "select * from cases where id=$id";
     
         $result = $this->conn()->query($query);
         

@@ -1,5 +1,49 @@
 <?php   include ('includes/header.php') ;?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+// Delete
+var id;
+function delete_data(d) {
+        var id = d;
+        $.post("app/Employee.php",
+            {
+                id: id,
+                delete: "delete",
 
+            },
+            function (data) {
+                $("tbody").html(data);
+
+            });
+    }
+
+
+
+
+    // show data in model 
+
+
+    function show(d) {
+        id = d;
+        $.post("app/Ticket.php",
+            {
+               
+                show: id,
+
+            },
+            function (data) {
+                $("#fo").html(data);
+
+            });
+    }
+
+	$(document).ready(function(){
+
+		
+     
+
+});
+</script>
 
             <!-- MAIN CONTENT-->
             <div class="main-content">
@@ -17,7 +61,7 @@
                                             <th class="text-right">الرقم الوطني</th>
                                             <th class="text-right">تاريخ الميلاد</th>
                                             <th class="text-right">رقم الهاتف</th>
-                                            <th class="text-right">نوع الشكوة</th>
+                                            <th class="text-right">نوع الشكوى</th>
                                             <th class="text-right">تحتاج متابعة</th>
                                             <th class="text-right">متكررة</th>
                                             <th></th>
@@ -27,9 +71,9 @@
                                    
                                     <?php     
     
-    $admin=new admin(); 
-    if($admin->GetAllUser()!=0){
-$data=$admin->GetAllUser();
+    $admin=new user(); 
+    if($admin->GetAll()!=0){
+$data=$admin->GetAll();
 $ty="";
 
 foreach ($data as $row ) {
@@ -51,29 +95,25 @@ foreach ($data as $row ) {
     $ty="اخرى";
 }
  echo '<tr>
-<td>'.$row["name"].'</td>
-<td>'.$row["userid"].'</td>
+<td class="text-right">'.$row["date"].'</td>
+<td class="text-right">'.$row["user_id"].'</td>
+<td class="text-right">'.$row["name"].'</td>
+<td class="text-right">'.$row["national_id"].'</td>
+<td class="text-right">'.$row["birth"].'</td>
+<td class="text-right">'.$row["phone"].'</td>
 <td class="text-right">'.$ty.'</td>
-<td><button type="button"  onclick="show(' . $row['id'] . ')" class="btn btn-primary" data-toggle="modal" data-target="#scrollmodal2">تعديل</button></td>
- <td><button type="button" onclick="delete_data(' . $row['id'] . ')" class="btn btn-danger" >حذف</button></td>
+<td class="text-right">'.$ty.'</td>
+<td class="text-right">'.$ty.'</td>
+
+<td><button type="button" class="btn btn-secondary" onclick="show(' . $row['id'] . ')"data-toggle="modal" data-target="#scrollmodal2">تفاصيل</button></td>
+
 </tr>';
     }
 
 }
   
                                     ?>  
-                                        <tr>
-                                            <td>2018-09-29 05:57</td>
-                                            <td>100398</td>
-                                            <td>iPhone X 64Gb Grey</td>
-                                            <td class="text-right">$999.00</td>
-                                            <td class="text-right">1</td>
-                                            <td class="text-right">$999.00</td>
-                                            <td class="text-right">3</td>
-                                            <td class="text-right">$30.00</td>
-                                            <td class="text-right">$30.00</td>
-                                            <td><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#scrollmodal">تفاصيل</button></td>
-                                        </tr>
+                                     
                                      
                                     </tbody>
                                 </table>

@@ -12,7 +12,7 @@ $case=new user();
 $case->AddCase($user_id,$name,$national_id,$birth,$phone,$note,$type);
 
 
-
+unset($_POST);
 
 } ?>
             <!-- MAIN CONTENT-->

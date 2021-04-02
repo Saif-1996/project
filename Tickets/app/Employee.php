@@ -103,11 +103,11 @@ else{
                 $ty="كامل صلاحية";
             }
             echo '<tr>
-<td>'.$row["name"].'</td>
-<td>'.$row["userid"].'</td>
+<td class="text-right">'.$row["name"].'</td>
+<td class="text-right">'.$row["userid"].'</td>
 <td class="text-right">'.$ty.'</td>
-<td><button type="button" onclick="show(' . $row['id'] . ')"  class="btn btn-primary" data-toggle="modal" data-target="#scrollmodal2">تعديل</button></td>
-<td><button type="button" onclick="delete_data(' . $row['id'] . ')" class="btn btn-danger" >حذف</button></td>
+<td class="text-right"><button type="button" onclick="show(' . $row['id'] . ')"  class="btn btn-primary" data-toggle="modal" data-target="#scrollmodal2">تعديل</button></td>
+<td class="text-right"><button type="button" onclick="delete_data(' . $row['id'] . ')" class="btn btn-danger" >حذف</button></td>
 </tr>';
         }
     }

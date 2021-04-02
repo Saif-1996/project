@@ -11,12 +11,13 @@ class Cases extends Db{
     public $user_id;
     public $type;
     public $birth;
+    public $date;
 
 
     public function Insert(){
        
-        $query = "insert into cases(user_id,name,national_id,birth,phone,note,type)
-        values ('$this->user_id','$this->name',$this->national,'$this->birth',$this->phone,'$this->note',$this->type)";
+        $query = "insert into cases(user_id,name,national_id,birth,phone,note,type,date)
+        values ('$this->user_id','$this->name',$this->national,'$this->birth',$this->phone,'$this->note',$this->type,'$this->date')";
         $this->conn()->query($query);
            
     }
@@ -27,7 +28,7 @@ class Cases extends Db{
     {
 
 
-        $query = "select * from user";
+        $query = "select * from cases";
     
         $result = $this->conn()->query($query);
         if ($result->num_rows > 0) {
