@@ -1,4 +1,11 @@
-<?php   include ('class/admin.php') ;?>
+<?php    session_start();
+if(!isset($_SESSION['id'])){
+    header("location:login.php");
+
+
+} 
+  include ('class/admin.php') ;?>
+
 <!DOCTYPE html>
 <html lang="en">
 

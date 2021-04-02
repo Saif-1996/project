@@ -1,4 +1,3 @@
-<?php   include ('includes/Database.php') ;?>
 <?php   include ('includes/header.php') ;?>
 
 
@@ -25,6 +24,44 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                   
+                                    <?php     
+    
+    $admin=new admin(); 
+    if($admin->GetAllUser()!=0){
+$data=$admin->GetAllUser();
+$ty="";
+
+foreach ($data as $row ) {
+    if($row["type"]==1){
+        $ty="أخذ الجرعة ولم يتم تسجيلها";
+    }elseif($row["type"]==2){
+        $ty="مشكلة بالاصابة بالكورونا";
+}elseif($row["type"]==3){
+    $ty="اولوية";
+}elseif($row["type"]==4){
+    $ty="متخلف عن موعده";
+}elseif($row["type"]==5){
+    $ty="مشكلة في نوع المطعوم";
+}elseif($row["type"]==6){
+    $ty="حساسية";
+}elseif($row["type"]==7){
+    $ty="منع تطعيم";
+}elseif($row["type"]==8){
+    $ty="اخرى";
+}
+ echo '<tr>
+<td>'.$row["name"].'</td>
+<td>'.$row["userid"].'</td>
+<td class="text-right">'.$ty.'</td>
+<td><button type="button"  onclick="show(' . $row['id'] . ')" class="btn btn-primary" data-toggle="modal" data-target="#scrollmodal2">تعديل</button></td>
+ <td><button type="button" onclick="delete_data(' . $row['id'] . ')" class="btn btn-danger" >حذف</button></td>
+</tr>';
+    }
+
+}
+  
+                                    ?>  
                                         <tr>
                                             <td>2018-09-29 05:57</td>
                                             <td>100398</td>
@@ -37,66 +74,7 @@
                                             <td class="text-right">$30.00</td>
                                             <td><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#scrollmodal">تفاصيل</button></td>
                                         </tr>
-                                        <tr>
-                                            <td>2018-09-28 01:22</td>
-                                            <td>100397</td>
-                                            <td>Samsung S8 Black</td>
-                                            <td class="text-right">$756.00</td>
-                                            <td class="text-right">1</td>
-                                            <td class="text-right">$756.00</td>
-                                            <td class="text-right">3</td>
-                                            <td class="text-right">$30.00</td>
-                                            <td class="text-right">$30.00</td>
-                                            <td><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#scrollmodal">تفاصيل</button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>2018-09-27 02:12</td>
-                                            <td>100396</td>
-                                            <td>Game Console Controller</td>
-                                            <td class="text-right">$22.00</td>
-                                            <td class="text-right">2</td>
-                                            <td class="text-right">$44.00</td>
-                                            <td class="text-right">3</td>
-                                            <td class="text-right">$30.00</td>
-                                            <td class="text-right">$30.00</td>
-                                            <td><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#scrollmodal">تفاصيل</button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>2018-09-26 23:06</td>
-                                            <td>100395</td>
-                                            <td>iPhone X 256Gb Black</td>
-                                            <td class="text-right">$1199.00</td>
-                                            <td class="text-right">1</td>
-                                            <td class="text-right">$1199.00</td>
-                                            <td class="text-right">3</td>
-                                            <td class="text-right">$30.00</td>
-                                            <td class="text-right">$30.00</td>
-                                            <td><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#scrollmodal">تفاصيل</button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>2018-09-25 19:03</td>
-                                            <td>100393</td>
-                                            <td>USB 3.0 Cable</td>
-                                            <td class="text-right">$10.00</td>
-                                            <td class="text-right">3</td>
-                                            <td class="text-right">$30.00</td>
-                                            <td class="text-right">3</td>
-                                            <td class="text-right">$30.00</td>
-                                            <td class="text-right">$30.00</td>
-                                            <td><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#scrollmodal">تفاصيل</button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>2018-09-29 05:57</td>
-                                            <td>100392</td>
-                                            <td>Smartwatch 4.0 LTE Wifi</td>
-                                            <td class="text-right">$199.00</td>
-                                            <td class="text-right">6</td>
-                                            <td class="text-right">$1494.00</td>
-                                            <td class="text-right">3</td>
-                                            <td class="text-right">$30.00</td>
-                                            <td class="text-right">$30.00</td>
-                                            <td><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#scrollmodal">تفاصيل</button></td>
-                                        </tr>
+                                     
                                     </tbody>
                                 </table>
                             </div>

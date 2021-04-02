@@ -4,7 +4,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
 // Delete
-
+var id;
 function delete_data(d) {
         var id = d;
         $.post("app/Employee.php",
@@ -15,6 +15,26 @@ function delete_data(d) {
             },
             function (data) {
                 $("tbody").html(data);
+
+            });
+    }
+
+
+
+
+    // show data in model 
+
+
+    function show(d) {
+        id = d;
+        $.post("app/Employee.php",
+            {
+               
+                edit: id,
+
+            },
+            function (data) {
+                $("#fo").html(data);
 
             });
     }
@@ -46,14 +66,14 @@ function delete_data(d) {
 
 		$(".add").click(function(){ 
         var name = $("#name").val();
-                var id = $("#id").val();
+                var uid = $("#uid").val();
                 var type = $("#type").val();
                 var password = $("#pass").val();
                 var form = new FormData();
                
                 form.append("name", name);
                 form.append("pass", password);
-                form.append("id", id);
+                form.append("id", uid);
                 form.append("type", type);
                 form.append("Add", "add");
                 // alert(form["file"]);
@@ -73,9 +93,14 @@ function delete_data(d) {
 		});
 
 
+// Update data
+
 		$("#edit").click(function(){
+            // console.log(id);
    var name = $("#edname").val();
-                var id = $("#edid").val();
+            console.log(name);
+   
+                var userid = $("#edid").val();
                 var type = $("#edtype").val();
                 var password = $("#edpass").val();
                 var form = new FormData();
@@ -83,8 +108,9 @@ function delete_data(d) {
                 form.append("name", name);
                 form.append("pass", password);
                 form.append("id", id);
+                form.append("userid", userid);
                 form.append("type", type);
-                form.append("Add", "add");
+                form.append("update", "add");
                 // alert(form["file"]);
                 $.ajax({
                     type: "post",
@@ -98,6 +124,8 @@ function delete_data(d) {
                         $('#form')[0].reset();
                     }
                 });
+                $('.modal').modal('hide');
+
 	});
 
 
@@ -132,7 +160,7 @@ $("#form").submit(function(e) {
                                             <div class="col-6">
                                             <div class="form-group has-success">
                                                 <label for="cc-name" class="control-label mb-1"> الرقم الوطني / الشخصي</label>
-                                                <input id="id" name="id" type="text" maxlength="10" class="form-control cc-name valid" data-val="true" data-val-required="يرجى ادخال الرقم الوطني" autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error">
+                                                <input id="uid" name="id" type="text" maxlength="10" class="form-control cc-name valid" data-val="true" data-val-required="يرجى ادخال الرقم الوطني" autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error">
                                                 <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
                                             </div>
                                             
@@ -208,7 +236,7 @@ foreach ($data as $row ) {
 <td>'.$row["name"].'</td>
 <td>'.$row["userid"].'</td>
 <td class="text-right">'.$ty.'</td>
-<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#scrollmodal2">تعديل</button></td>
+<td><button type="button"  onclick="show(' . $row['id'] . ')" class="btn btn-primary" data-toggle="modal" data-target="#scrollmodal2">تعديل</button></td>
  <td><button type="button" onclick="delete_data(' . $row['id'] . ')" class="btn btn-danger" >حذف</button></td>
 </tr>';
     }

@@ -39,7 +39,7 @@ class admin extends user
     }
 
     public function GetOne($id){
-        $query = "select * from user";
+        $query = "select * from user where id=$id";
     
         $result = $this->conn()->query($query);
         
@@ -52,9 +52,18 @@ class admin extends user
     }
 
 
+
+
     // Update a row/s in a Database Table
-    public function Update()
-    {
+    public function UpdateUser($id,$n, $p, $u, $pe){
+        $query = "update  user set name ='$n',
+        password='$p',
+        userid='$u',
+        per='$pe'
+        where id = $id";
+        $this->conn()->query($query);
+    
+    
     }
 
     // Remove a row/s in a Database Table

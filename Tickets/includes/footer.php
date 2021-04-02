@@ -33,49 +33,9 @@
                                                 <h3 class="text-center title-2 ">تعديل</h3>
                                             </div>
                                             <div class="card-body">
-                                                <form action="" method="post" novalidate="novalidate">
+                                                <form id="fo" action="" method="post" novalidate="novalidate">
                                                    
-                                                <div class="row">
-                                            <div class="col-6">
-                                                <div class="form-group">
-                                                <label for="cc-payment" class="control-label mb-1">الأسم</label>
-                                                <input id="name" name="edname"  type="text" class="form-control cc-name valid" data-val="true" data-val-required="Please enter the name on card" autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error">
-                                            </div>
-                                           
-                                            </div>
-                                            <div class="col-6">
-                                            <div class="form-group has-success">
-                                                <label for="cc-name" class="control-label mb-1"> الرقم الوطني / الشخصي</label>
-                                                <input id="id" name="edid" type="text" maxlength="10" class="form-control cc-name valid" data-val="true" data-val-required="يرجى ادخال الرقم الوطني" autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error">
-                                                <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
-                                            </div>
-                                            
-                                            </div>
-                                            
-                                            
-                                          
-</div>
-
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <label for="x_card_code" class="control-label mb-1">الصلاحية</label>
-                                                    <div class="input-group">
-                                                        <select name="edtype" id="type" class="form-control">
-                                                            <option value="0">بدون صلاحية</option>
-                                                            <option value="1">كامل الصلاحية</option>
-                                                         
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6">
-                                                <div class="form-group has-success">
-                                                <label for="cc-name" class="control-label mb-1"> الرقم السري</label>
-                                                <input id="pass" name="edpass" type="password" maxlength="10" class="form-control cc-name valid" data-val="true" data-val-required="يرجى ادخال الرقم الوطني" autocomplete="cc-name" aria-required="true" aria-invalid="false" aria-describedby="cc-name-error">
-                                                <span class="help-block field-validation-valid" data-valmsg-for="cc-name" data-valmsg-replace="true"></span>
-                                            </div>
-                                                </div>
-                                            </div>
-                                          
+                                       
                                                    
                                                     
                                                 </form>
@@ -87,7 +47,7 @@
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">خروج</button>
-							<button type="button" id="edit" class="btn btn-primary">ارسال</button>
+							<button type="button" id="edit" class="btn btn-primary">تعديل</button>
 						</div>
 					</div>
 				</div>

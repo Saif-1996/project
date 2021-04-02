@@ -1,3 +1,4 @@
+<?php   include ('class/admin.php') ;?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -31,7 +32,51 @@
         <link href="css/style.css" rel="stylesheet" >
         <!-- Main CSS-->
         <link href="css/theme1.css" rel="stylesheet" media="all">
+        <!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     
+        <script type="text/javascript">
+
+$(document).ready(function () {
+
+    $("#form").submit(function(e) {
+    e.preventDefault();
+});
+
+
+   
+    $("#submit").click(function () {
+        var pass = $("#password").val();
+        var userid = $("#userid").val();
+        $.post("app/login.php",
+            {
+                pass: pass,
+                userid: userid,
+                login: "login",
+
+            },
+            function (data) {
+                if (data == "true") {
+                    window.location.href = "index.php";
+                }
+                else {
+                    $("#er").html(data);
+                }
+            });
+
+    });
+
+//
+
+$("#password").keydown(function () {
+$("#er").empty();
+    });
+    $("#userid").keydown(function () {
+$("#er").empty();
+    });
+});
+</script>
+
     </head>
 
     <body>
@@ -45,14 +90,16 @@
                                 <h1>تسجيل دخول</h1>
                             </div>
                             <div class="login-form">
-                                <form action="" method="post">
+                                <form action="" id="form" method="post">
                                     <div class="form-group">
                                         <label class="dir floating"><b>اسم الموظف</b></label>
-                                        <input class="au-input au-input--full" type="text" name="email" placeholder="اسم الموظف">
+                                        <input class="au-input au-input--full" id="userid" type="text" name="email" placeholder="اسم الموظف">
                                     </div>
                                     <div class="form-group m-t-20">
                                         <label class="dir floating"><b>كلمة المرور</b></label>
-                                        <input class="au-input au-input--full" type="password" name="password" placeholder="كلمة المرور">
+                                        <input class="au-input au-input--full" id="password" type="password" name="password" placeholder="كلمة المرور">
+                                        <span id="er"></span>
+                                    
                                     </div>
                                     <div class="login-checkbox m-t-20">
                                         <label>
@@ -62,7 +109,7 @@
                                             <p disabled>نسيت كلمة المرور؟</p>
                                         </label>
                                     </div>
-                                    <button class="au-btn au-btn--block au-btn--green m-b-20 fnt" type="submit"><b>دخول</b></button>
+                                    <button class="au-btn au-btn--block au-btn--green m-b-20 fnt" id="submit" type="submit"><b>دخول</b></button>
                                 </form>
                             </div>
                         </div>

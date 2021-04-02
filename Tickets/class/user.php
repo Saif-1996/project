@@ -1,4 +1,5 @@
 <?php   include ('Database.php') ;?>
+<?php   include ('Cases.php') ;?>
 
 <?php
 
@@ -11,19 +12,37 @@ class user extends Db
     public $query;
 
 
-    public function login($id, $pass)
+    public function login($pass,$id)
     {
 
-        $query = "select name,id from user where user-id=" . $id . "and pass='" . $pass . "'";
+        $query = "select id from user where password='" . $pass . "' and userid='" . $id . "'";
 
 
-        $this->conn()->query($query);
+        $result = $this->conn()->query($query);
+        
+
+         $result= $result->fetch_assoc();
+               
+            if(isset($result["id"]))
+           return $result;
+           else
+               return 0;
+           
     }
 
 
     // Update a row/s in a Database Table
-    public function Update()
+    public function AddCase($user_id,$name,$national_id,$birth,$phone,$note,$type)
     {
+        $case=new cases();
+$case->name=$name;
+$case->national=$national_id;
+$case->phone=$phone;
+$case->birth=$birth;
+$case->note=$note;
+$case->type=$type;
+$case->user_id=$user_id;
+$case->Insert();
     }
 
     // Remove a row/s in a Database Table
