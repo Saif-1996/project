@@ -5,7 +5,7 @@
 var id;
 function delete_data(d) {
         var id = d;
-        $.post("app/Employee.php",
+        $.post("app/filter.php",
             {
                 id: id,
                 delete: "delete",
@@ -39,7 +39,19 @@ function delete_data(d) {
 
 	$(document).ready(function(){
 
-		
+		$("#filter").change(function(){
+
+$.post("app/filter.php",{
+
+type:$("#filter").val()
+
+},function(data){
+
+$("tbody").html(data);
+});
+
+
+        });
      
 
 });
@@ -49,47 +61,40 @@ function delete_data(d) {
             <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
-                    <div dir="rtl" class="col-lg-3">
-                                <div class="au-card au-card--bg-blue au-card-top-countries m-b-30">
-                                    <div class="au-card-inner">
-                                        <div class="table-responsive">
-                                            <table class="table table-top-countries">
-                                                <tbody>
-                                                    <tr>
-                                                        <td>United States</td>
-                                                        <td class="text-right">$119,366.96</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Australia</td>
-                                                        <td class="text-right">$70,261.65</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>United Kingdom</td>
-                                                        <td class="text-right">$46,399.22</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Turkey</td>
-                                                        <td class="text-right">$35,364.90</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Germany</td>
-                                                        <td class="text-right">$20,366.96</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>France</td>
-                                                        <td class="text-right">$10,366.96</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Australia</td>
-                                                        <td class="text-right">$5,366.96</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Italy</td>
-                                                        <td class="text-right">$1639.32</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
+                    <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="text-center title-2"> </h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <form action="" id="form" method="post" novalidate="novalidate">
+                                            
+          
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <label for="x_card_code" class="control-label mb-1">تصفية النتائج</label>
+                                                    <div class="input-group">
+                                                        <select name="type" id="filter" class="form-control">
+                                                        <option value="0">الكل</option>
+                                                            <option value="1">أخذ الجرعة ولم يتم تسجيلها</option>
+                                                            <option value="2">مشكلة بالاصابة بالكورونا</option>
+                                                            <option value="3">اولوية</option>
+                                                            <option value="4">متخلف عن موعده</option>
+                                                            <option value="5">مشكلة في نوع المطعوم</option>
+                                                            <option value="6">حساسية</option>
+                                                            <option value="7">منع تطعيم</option>
+                                                            <option value="8">اخرى</option>
+                                                         
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                          
+                                            <div>
+                                           
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -109,13 +114,14 @@ function delete_data(d) {
                                             <th class="text-right">تحتاج متابعة</th>
                                             <th class="text-right">متكررة</th>
                                             <th></th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                    
                                     <?php     
     
-    $admin=new user(); 
+    $admin=new admin(); 
     if($admin->GetAll()!=0){
 $data=$admin->GetAll();
 $ty="";
@@ -150,7 +156,7 @@ foreach ($data as $row ) {
 <td class="text-right">'.$ty.'</td>
 
 <td><button type="button" class="btn btn-secondary" onclick="show(' . $row['case_id'] . ')"data-toggle="modal" data-target="#scrollmodal2">تفاصيل</button></td>
-
+<td class="text-right"><button type="button" onclick="delete_data(' . $row['case_id'] . ')" class="btn btn-primary" >انجاز</button></td>
 </tr>';
     }
 

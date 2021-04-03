@@ -64,7 +64,7 @@ unset($_POST);
 
                                             <div class="row">
                                                 <div class="col-6">
-                                                    <label for="x_card_code" class="control-label mb-1">نوع الشكوة</label>
+                                                    <label for="x_card_code" class="control-label mb-1">نوع الشكوى</label>
                                                     <div class="input-group">
                                                         <select name="type" id="select1" class="form-control">
                                                             <option value="0">-- اختر --</option>

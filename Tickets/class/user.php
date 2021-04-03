@@ -45,24 +45,7 @@ $case->user_id=$user_id;
 $case->date=date("d/m/Y");
 $case->Insert();
     }
-    public function GetAll()
-    {
-
-        $query = "select * from cases INNER JOIN user ON cases.user_id=user.id";
-
     
-        $result = $this->conn()->query($query);
-        if ($result->num_rows > 0) {
-
-            while ($row = $result->fetch_assoc()) {
-                $data[] = $row;
-            }
-           return $data;
-        } else {
-            return 0;
-        }
-        
-    }
 
     // Remove a row/s in a Database Table
   

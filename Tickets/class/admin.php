@@ -38,6 +38,25 @@ class admin extends user
         }
     }
     
+    public function GetAll()
+    {
+
+        $query = "select * from cases INNER JOIN user ON cases.user_id=user.id";
+
+    
+        $result = $this->conn()->query($query);
+        if ($result->num_rows > 0) {
+
+            while ($row = $result->fetch_assoc()) {
+                $data[] = $row;
+            }
+           return $data;
+        } else {
+            return 0;
+        }
+        
+    }
+
 
     public function GetOne($id){
         $query = "select * from user where id=$id";
@@ -67,6 +86,26 @@ class admin extends user
        
     }
 
+    public function GetType($type)
+    {
+
+
+        $query = "select * from cases  INNER JOIN user ON cases.user_id=user.id and cases.type='".$type."'";
+    
+        $result = $this->conn()->query($query);
+        if ($result->num_rows > 0) {
+
+            while ($row = $result->fetch_assoc()) {
+                $data[] = $row;
+            }
+           return $data;
+        } else {
+            return 0;
+        }
+        
+    }
+
+
 
 
 
@@ -89,8 +128,12 @@ class admin extends user
         $this->conn()->query($query);
     }
 
-    // execute statement
-    private function executeStatement()
+    // Remove a row/s in a Database Table
+    public function RemoveCase($id)
     {
+        $query = "delete from cases where case_id=$id";
+        $this->conn()->query($query);
     }
+
+    
 }
